@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "main.h"
 
 void tokenize(char *input, char *tokens[]) {
     char *token = strtok(input, " ");
