@@ -17,7 +17,6 @@ int main() {
         if (getline(&input, &input_size, stdin) == -1) {
             printf("\n");
             free(input);
-            free(argv); /* Don't forget to free dynamically allocated memory */
             break;
         }
 
