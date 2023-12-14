@@ -15,26 +15,26 @@
 char **get_path_directories() {
     char *path = getenv("PATH");
     int num_directories = 1;
-
+    int i, index;
+    char **directories = malloc(num_directories * sizeof(char *));
+    
     if (path == NULL) {
         fprintf(stderr, "PATH environment variable not found.\n");
         exit(EXIT_FAILURE);
     }
 
-    int i;
     for (i = 0; path[i] != '\0'; ++i) {
         if (path[i] == ':') {
             num_directories++;
         }
     }
 
-    char **directories = malloc(num_directories * sizeof(char *));
     if (directories == NULL) {
         perror("malloc");
         exit(EXIT_FAILURE);
     }
 
-    int index = 0;
+    index = 0;
     char *token = strtok(path, ":");
     while (token != NULL) {
         directories[index++] = token;
@@ -74,11 +74,12 @@ int main() {
     char *tokens[MAX_TOKENS];
     pid_t pid;
     int status;
+    int i;
 
     char **path_directories = get_path_directories();
 
     printf("Directories in PATH:\n");
-    int i;
+    
     for (i = 0; path_directories[i] != NULL; ++i) {
         printf("%s\n", path_directories[i]);
     }
