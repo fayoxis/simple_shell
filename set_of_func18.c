@@ -16,7 +16,7 @@ char **strttok(char *str, char *delimiter)
     if (str == NULL || str[0] == '\0')
         return NULL;
 
-    if (!delimiter)
+if (!delimiter)
         delimiter = " ";
 
     /* Calculate the number of words*/
