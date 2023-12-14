@@ -21,6 +21,7 @@ int setAlias(inform_t *inform, char *str)
     return add_newnode(&(inform->alias), str, 0) == NULL;
 }
   
+
 /**
  * printAlias - it is Printing an alias string.
  * @node: well this is the alias node.
