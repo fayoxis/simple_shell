@@ -8,16 +8,17 @@
  */
 int setAlias(inform_t *inform, char *str)
 {
-{
-char *equalPos;
+    {
+    char *equalPos;
 
-equalPos = _strchr(str, '=');
-if (!equalPos)
-return (1);
-if (!*++equalPos)
-return (remove_alias(inform, str));
-remove_alias(inform, str);
-return (add_newnode(&(inform->alias), str, 0)) == NULL;
+    equalPos = _strchr(str, '=');
+    if (!equalPos)
+        return 1;
+    if (!*++equalPos)
+        return remove_alias(inform, str);
+
+    remove_alias(inform, str);
+    return add_newnode(&(inform->alias), str, 0) == NULL;
 }
   
 
@@ -29,19 +30,19 @@ return (add_newnode(&(inform->alias), str, 0)) == NULL;
  */
 int printAlias(list_t *node)
 {
-char *equalPos = NULL, *alias = NULL;
+    char *equalPos = NULL, *alias = NULL;
 
-if (node)
-{
-equalPos = _strchr(node->str, '=');
-for (alias = node->str; alias <= equalPos; alias++)
-_putchar(*alias);
-_putchar('\'');
-_puts(equalPos + 1);
-_puts("'\n");
-return (0);
-}
-return (1);
+    if (node)
+    {
+        equalPos = _strchr(node->str, '=');
+        for (alias = node->str; alias <= equalPos; alias++)
+            _putchar(*alias);
+        _putchar('\'');
+        _puts(equalPos + 1);
+        _puts("'\n");
+        return 0;
+    }
+    return 1;
 }
 
 /**
@@ -52,39 +53,39 @@ return (1);
  */
 int myAlias(inform_t *inform)
 {
-int i;
-char *equalPos;
-list_t *node;
+    int i;
+    char *equalPos;
+    list_t *node;
 
-if (inform->argumentCount== 1)
-{
-node = inform->alias;
-while (node)
-{
-printAlias(node);
-node = node->next;
-}
-return (0);
-}
+    if (inform->argumentCount== 1)
+    {
+        node = inform->alias;
+        while (node)
+        {
+            printAlias(node);
+            node = node->next;
+        }
+        return 0;
+    }
 
-for (i = 1; inform->arguments[i]; i++)
-{
-equalPos = _strchr(inform->arguments[i], '=');
-if (equalPos)
-{
-setAlias(inform, inform->arguments[i]);
-}
-}
+    for (i = 1; inform->arguments[i]; i++)
+    {
+        equalPos = _strchr(inform->arguments[i], '=');
+        if (equalPos)
+        {
+            setAlias(inform, inform->arguments[i]);
+        }
+    }
 
-for (i = 1; inform->arguments[i]; i++)
-{
-equalPos = _strchr(inform->arguments[i], '=');
-if (!equalPos)
-{
-node = find_node_starts_with(inform->alias, inform->arguments[i], '=');
-printAlias(node);
-}
-}
+    for (i = 1; inform->arguments[i]; i++)
+    {
+        equalPos = _strchr(inform->arguments[i], '=');
+        if (!equalPos)
+        {
+            node = find_node_starts_with(inform->alias, inform->arguments[i], '=');
+            printAlias(node);
+        }
+    }
 
-return (0);
+    return 0;
 }
