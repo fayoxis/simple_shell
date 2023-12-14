@@ -12,11 +12,6 @@ int main() {
     pid_t pid;
     int status;
 
-    if (argv == NULL) {
-        perror("malloc");
-        exit(EXIT_FAILURE);
-    }
-
     while (1) {
         display();
         if (getline(&input, &input_size, stdin) == -1) {
@@ -57,7 +52,6 @@ int main() {
     }
 
     free(input);
-    free(argv);
 
     return 0;
 }
