@@ -33,7 +33,7 @@ int main() {
             exit(EXIT_FAILURE);
         } else if (pid == 0) {
             
-            argv[] = { input, NULL };
+            argv[MAX_SIZE] = { input, NULL };
 
            
             if (execve(input, argv, NULL) == -1) {
