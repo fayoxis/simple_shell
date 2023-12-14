@@ -13,7 +13,6 @@ int exit_status;
 int input_valid;
 do {
 input_valid = 1;  /* Assume input is valid */
-
 if (inform->arguments[1])  /* If there is an exit argument */
 {
 exit_status = str_integer(inform->arguments[1]);
@@ -44,10 +43,8 @@ return (-2);
  */
 int change_Directory(inform_t *inform)
 {
-char buffer[1024];
+char buffer[1024], *dir, *s = getcwd(buffer, 1024);
 int chdir_ret;
-char *dir;
-char *s = getcwd(buffer, 1024);
 if (!s)
 {
 _puts("ERROR: Failed to retrieve current working directory");
