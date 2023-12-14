@@ -73,7 +73,7 @@ dir = _getenv(inform, "OLDPWD=");
 else
 {
 dir = inform->arguments[1];
-} 
+}
 chdir_ret = chdir(dir);
 if (chdir_ret == -1)
 {
@@ -86,9 +86,10 @@ else
 _setenv(inform, "OLDPWD", _getenv(inform, "PWD="));
 _setenv(inform, "PWD", getcwd(buffer, 1024));
 }
-    
 return (0);
 }
+
+
 /**
  * custom_help - changes the current directory of the process
  * @inform: Structure containing potential arguments. Used to maintain
@@ -131,7 +132,8 @@ int remove_alias(inform_t *inform, char *alias)
 {
 char *p, c;
 int ret;
-while (1) {
+while (1)
+{
 p = _strchr(alias, '=');
 if (!p)
 return (1);
