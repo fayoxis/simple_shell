@@ -1,6 +1,4 @@
-#include "shell.h"
-
-#define MAX_SIZE 1024
+#include "main.h"
 
 void display() {
     printf("$ ");
@@ -10,8 +8,8 @@ void display() {
 int main() {
     char *input = NULL;
     size_t input_size = 0;
+    char *tokens[MAX_TOKENS];
     pid_t pid;
-    char **argv = malloc(MAX_SIZE * sizeof(char *));
     int status;
 
     if (argv == NULL) {
@@ -30,6 +28,8 @@ int main() {
 
         input[strcspn(input, "\n")] = '\0';
 
+        tokenize(input, tokens);
+
         /* Fork a child process */
         pid = fork();
 
@@ -39,11 +39,7 @@ int main() {
         } else if (pid == 0) {
             /* Child process */
 
-            /* Assign values to argv */
-            argv[0] = input;
-            argv[1] = NULL;
-
-            if (execve(input, argv, NULL) == -1) {
+            if (execve(tokens[0], tokens, NULL) == -1) {
                 perror("./shell");
                 exit(EXIT_FAILURE);
             }
