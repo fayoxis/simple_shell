@@ -44,7 +44,7 @@ int main() {
             argv[1] = NULL;
 
             if (execve(input, argv, NULL) == -1) {
-                perror("execve");
+                perror("shell");
                 exit(EXIT_FAILURE);
             }
         } else {
