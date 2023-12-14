@@ -9,14 +9,14 @@
  */
 
 int shellLoop(inform_t *inform, char **avg) {
-    ssize_t readStatus;
-    int builtinReturn;
+ssize_t readStatus;
+int builtinReturn;
 
-    do {
-        initialize_shell_inform(inform);
-        if (checkInteractiveMode(inform))
-            _puts("$ ");
-        _eputchar(BUF_FLUSH);
+do {
+initialize_shell_inform(inform);
+if (checkInteractiveMode(inform))
+_puts("$ ");
+_eputchar(BUF_FLUSH);
         readStatus = get_input(inform);
         if (readStatus != -1) {
             set_shell_inform(inform, avg);
