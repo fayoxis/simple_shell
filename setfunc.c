@@ -1,7 +1,5 @@
 #include "shell.h"
 
-
-
 /**
  * exit_shell - Exits the shell
  * @inform: Structure containing potential arguments. Used to maintain
