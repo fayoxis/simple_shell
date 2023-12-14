@@ -1,4 +1,5 @@
 #include "shell.h"
+
 /**
 * readHistoryFromFile - reads the history from a file and updates the history list
 * @inform: the parameter struct
