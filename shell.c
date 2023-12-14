@@ -14,6 +14,7 @@
  */
 char **get_path_directories() {
     char *path = getenv("PATH");
+    int num_directories;
 
     if (path == NULL) {
         fprintf(stderr, "PATH environment variable not found.\n");
@@ -21,7 +22,7 @@ char **get_path_directories() {
     }
 
     /* Count the number of directories in PATH*/
-    int num_directories = 1;
+    num_directories = 1;
     for (char *c = path; *c != '\0'; ++c) {
         if (*c == ':') {
             num_directories++;
