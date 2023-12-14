@@ -40,14 +40,13 @@ return (-2);
 /**
  * change_Directory - Changes the current directory of the process.
  * @inform: Structure containing potential arguments. Used to maintain
- * a constant function prototype.
  * Return: Always 0.
  */
 int change_Directory(inform_t *inform)
 {
 char buffer[1024];
 int chdir_ret;
-char *dir;   
+char *dir;
 char *s = getcwd(buffer, 1024);
 if (!s)
 {
@@ -60,7 +59,8 @@ if (!dir)
 {
 dir = _getenv(inform, "PWD=");
 }
-} else if (_strcmp(inform->arguments[1], "-") == 0)
+}
+else if (_strcmp(inform->arguments[1], "-") == 0)
 {
 if (!_getenv(inform, "OLDPWD="))
 {
