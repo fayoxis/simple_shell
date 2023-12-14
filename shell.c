@@ -17,6 +17,7 @@ char **get_path_directories() {
     int num_directories = 1;
     int i, index;
     char **directories = malloc(num_directories * sizeof(char *));
+    char *token;
     
     if (path == NULL) {
         fprintf(stderr, "PATH environment variable not found.\n");
@@ -35,7 +36,7 @@ char **get_path_directories() {
     }
 
     index = 0;
-    char *token = strtok(path, ":");
+    token = strtok(path, ":");
     while (token != NULL) {
         directories[index++] = token;
         token = strtok(NULL, ":");
