@@ -47,39 +47,36 @@ return (-2);
  */
 int change_Directory(inform_t *inform)
 {
-char *s, *dir, buffer[1024];
+char buffer[1024];
 int chdir_ret;
-while (1)
-{
-s = getcwd(buffer, 1024);
+  char* dir;   
+char* s = getcwd(buffer, 1024);
 if (!s)
-_puts("ERROR: Failed to retrieve current working directory\n");
+{
+_puts("ERROR: Failed to retrieve current working directory");
+    }
 if (!inform->arguments[1])
 {
 dir = _getenv(inform, "HOME=");
 if (!dir)
-chdir_ret = chdir((dir = _getenv(inform, "PWD=")) ? dir : "/");
-else
-chdir_ret = chdir(dir);
+{
+dir = _getenv(inform, "PWD=");
 }
-else if (_strcmp(inform->arguments[1], "-") == 0) \
+} else if (_strcmp(inform->arguments[1], "-") == 0)
 {
-if (!_getenv(inform, "OLDPWD="))
-{
+if (!_getenv(inform, "OLDPWD=")) {
 _puts(s);
 _putchar('\n');
-break;
+return (0);
 }
-_puts(_getenv(inform, "OLDPWD="));
-_putchar('\n');
-chdir_ret = chdir((dir = _getenv(inform, "OLDPWD=")) ? dir : "/");
+dir = _getenv(inform, "OLDPWD=");
 }
-else {
-chdir_ret = chdir(inform->arguments[1]);
-}
-
-if (chdir_ret == -1)
+else
 {
+dir = inform->arguments[1];
+} 
+chdir_ret = chdir(dir);
+if (chdir_ret == -1) {
 print_error_message(inform, "Failed to change directory to ");
 _eputs(inform->arguments[1]);
 _eputchar('\n');
@@ -89,11 +86,9 @@ else
 _setenv(inform, "OLDPWD", _getenv(inform, "PWD="));
 _setenv(inform, "PWD", getcwd(buffer, 1024));
 }
-break;
-}
+    
 return (0);
 }
-
 /**
  * custom_help - changes the current directory of the process
  * @inform: Structure containing potential arguments. Used to maintain
