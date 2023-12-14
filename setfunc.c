@@ -13,8 +13,7 @@ int exit_shell(inform_t *inform)
 {
 int exit_status;
 int input_valid;
-do
-{
+do {
 input_valid = 1;  /* Assume input is valid */
 
 if (inform->arguments[1])  /* If there is an exit argument */
@@ -50,19 +49,23 @@ int change_Directory(inform_t *inform)
 {
 char *s, *dir, buffer[1024];
 int chdir_ret;
-while (1) {
+while (1)
+{
 s = getcwd(buffer, 1024);
 if (!s)
 _puts("ERROR: Failed to retrieve current working directory\n");
-if (!inform->arguments[1]) {
+if (!inform->arguments[1])
+{
 dir = _getenv(inform, "HOME=");
 if (!dir)
 chdir_ret = chdir((dir = _getenv(inform, "PWD=")) ? dir : "/");
 else
 chdir_ret = chdir(dir);
 }
-else if (_strcmp(inform->arguments[1], "-") == 0) {
-if (!_getenv(inform, "OLDPWD=")) {
+else if (_strcmp(inform->arguments[1], "-") == 0) \
+{
+if (!_getenv(inform, "OLDPWD="))
+{
 _puts(s);
 _putchar('\n');
 break;
@@ -75,12 +78,14 @@ else {
 chdir_ret = chdir(inform->arguments[1]);
 }
 
-if (chdir_ret == -1) {
+if (chdir_ret == -1)
+{
 print_error_message(inform, "Failed to change directory to ");
 _eputs(inform->arguments[1]);
 _eputchar('\n');
 }
-else {
+else
+{
 _setenv(inform, "OLDPWD", _getenv(inform, "PWD="));
 _setenv(inform, "PWD", getcwd(buffer, 1024));
 }
@@ -108,8 +113,10 @@ return (0);
 }
 
 /**
- * display_history - Displays the history list, one command per line, with line numbers starting at 0.
- * @inform: Structure containing potential arguments. Used to maintain constant function prototype.
+ * display_history - Displays the history list, one
+ * command per line, with line numbers starting at 0.
+ * @inform: Structure containing potential arguments.
+ * Used to maintain constant function prototype.
  * Return: Always 0.
  */
 int display_history(inform_t *inform)
@@ -140,7 +147,6 @@ get_nodeindex(inform->alias, find_node_starts_with(inform->alias, alias, -1)));
 *p = c;
 if (ret == 0)
 break;
-	}
-	
-	return (ret);
+}
+return (ret);
 }
