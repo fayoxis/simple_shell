@@ -25,7 +25,7 @@ if (delimStr[i] == ch)
 return (1);
 i++;
 }
-return 0;
+return (0);
 }
 
 /**
@@ -38,7 +38,6 @@ int isAlphabetic(int ch)
 int result = 0;
 
 /*Loop to handle multiple characters */
-  
 do {
 if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
 result = 1;
