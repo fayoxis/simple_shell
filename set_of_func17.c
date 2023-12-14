@@ -13,7 +13,7 @@ int is_chain_char(inform_t *inform, char *buffer, size_t *adr)
     size_t i = *adr;
 
     while (buffer[i] != '\0') {
-        if (buffer[i] == '|' && buffer[i + 1] == '|') {
+if (buffer[i] == '|' && buffer[i + 1] == '|') {
             buffer[i] = 0;
             i++;
             inform->cmd_buffer_type = CMD_OR;
