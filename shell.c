@@ -14,29 +14,26 @@
  */
 char **get_path_directories() {
     char *path = getenv("PATH");
-    int num_directories;
+    int num_directories = 1;
 
     if (path == NULL) {
         fprintf(stderr, "PATH environment variable not found.\n");
         exit(EXIT_FAILURE);
     }
 
-    /* Count the number of directories in PATH*/
-    num_directories = 1;
-    for (char *c = path; *c != '\0'; ++c) {
-        if (*c == ':') {
+    int i;
+    for (i = 0; path[i] != '\0'; ++i) {
+        if (path[i] == ':') {
             num_directories++;
         }
     }
 
-    /* Allocate memory for the array of directory strings*/
     char **directories = malloc(num_directories * sizeof(char *));
     if (directories == NULL) {
         perror("malloc");
         exit(EXIT_FAILURE);
     }
 
-    /* Tokenize the PATH variable and populate the array*/
     int index = 0;
     char *token = strtok(path, ":");
     while (token != NULL) {
@@ -78,12 +75,11 @@ int main() {
     pid_t pid;
     int status;
 
-    /* Get the array of directories from PATH*/
     char **path_directories = get_path_directories();
 
-    
     printf("Directories in PATH:\n");
-    for (int i = 0; path_directories[i] != NULL; ++i) {
+    int i;
+    for (i = 0; path_directories[i] != NULL; ++i) {
         printf("%s\n", path_directories[i]);
     }
 
@@ -97,20 +93,15 @@ int main() {
 
         input[strcspn(input, "\n")] = '\0';
 
-        /* Tokenize the input*/
         tokenize(input, tokens);
 
-        
         pid = fork();
 
         if (pid == -1) {
             perror("fork");
             exit(EXIT_FAILURE);
         } else if (pid == 0) {
-            /* Child process*/
-
-            /* Search for the command in PATH*/
-            for (int i = 0; path_directories[i] != NULL; ++i) {
+            for (i = 0; path_directories[i] != NULL; ++i) {
                 char *command_path = malloc(strlen(path_directories[i]) + strlen(tokens[0]) + 2);
                 if (command_path == NULL) {
                     perror("malloc");
@@ -119,23 +110,18 @@ int main() {
 
                 sprintf(command_path, "%s/%s", path_directories[i], tokens[0]);
 
-                /* Execute the command using execve*/
                 if (execve(command_path, tokens, NULL) == -1) {
-                    /* Continue searching in the next directory if execve fails*/
                     free(command_path);
                     continue;
                 } else {
-                    /* execve succeeded, so this block won't be executed*/
                     free(command_path);
                     exit(EXIT_SUCCESS);
                 }
             }
 
-            
             fprintf(stderr, "Command not found: %s\n", tokens[0]);
             exit(EXIT_FAILURE);
         } else {
-            /* Parent process*/
             if (waitpid(pid, &status, 0) == -1) {
                 perror("waitpid");
                 exit(EXIT_FAILURE);
@@ -147,9 +133,8 @@ int main() {
         }
     }
 
-    /* Free allocated memory*/
     free(input);
-    for (int i = 0; path_directories[i] != NULL; ++i) {
+    for (i = 0; path_directories[i] != NULL; ++i) {
         free(path_directories[i]);
     }
     free(path_directories);
