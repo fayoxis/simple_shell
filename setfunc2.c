@@ -1,5 +1,8 @@
 #include "shell.h"
 
+int printAlias(list_t *node);
+int myAlias(inform_t *inform);
+
 /**
  * setAlias - it is to Sets an alias to a given string.
  * @inform: when Pointer point to the parameter struct.
@@ -8,7 +11,6 @@
  */
 int setAlias(inform_t *inform, char *str)
 {
-    {
     char *equalPos;
 
     equalPos = _strchr(str, '=');
