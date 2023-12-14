@@ -49,12 +49,12 @@ int change_Directory(inform_t *inform)
 {
 char buffer[1024];
 int chdir_ret;
-  char* dir;   
-char* s = getcwd(buffer, 1024);
+char *dir;   
+char *s = getcwd(buffer, 1024);
 if (!s)
 {
 _puts("ERROR: Failed to retrieve current working directory");
-    }
+}
 if (!inform->arguments[1])
 {
 dir = _getenv(inform, "HOME=");
@@ -64,7 +64,8 @@ dir = _getenv(inform, "PWD=");
 }
 } else if (_strcmp(inform->arguments[1], "-") == 0)
 {
-if (!_getenv(inform, "OLDPWD=")) {
+if (!_getenv(inform, "OLDPWD="))
+{
 _puts(s);
 _putchar('\n');
 return (0);
@@ -76,7 +77,8 @@ else
 dir = inform->arguments[1];
 } 
 chdir_ret = chdir(dir);
-if (chdir_ret == -1) {
+if (chdir_ret == -1)
+{
 print_error_message(inform, "Failed to change directory to ");
 _eputs(inform->arguments[1]);
 _eputchar('\n');
