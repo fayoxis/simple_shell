@@ -28,7 +28,7 @@ char* replace_vars(char* command) {
 
 void handle_logical_operators(char* commands) {
     char* command = _strtok(commands, "&&");
-    char** tokenized_args = tokenize(or_command);
+    char** tokenized_args = tokenize(command);
     int cmd_type = classify_command(tokenized_args);
     while (command != NULL) {
         char* or_command = _strtok(command, "||");
