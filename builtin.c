@@ -1,6 +1,6 @@
 #include "shell.h"
 
-/*char **cmd_args;*/
+char **cmd_args;
 
 /**
 * print_environment - Prints the current environment
