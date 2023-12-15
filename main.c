@@ -15,7 +15,8 @@ int exit_status = 0;
 * Returns: 0 on success
 */
 
-int main(int argc __attribute__((unused)), char **argv) {
+int main(int argc __attribute__((unused)), char **argv)
+{
 char **command = NULL;
 char *input_line = NULL;
 int exit_status = 0;
@@ -26,10 +27,12 @@ size_t buffer_size = 0;
 signal(SIGINT, handle_interrupt);
 shell_alias = argv[0];
 
-while (1) {
+while (1)
+{
 non_interact();
 print_prompt("$ ", STDOUT_FILENO);
-if (getline(&input_line, &buffer_size, stdin) == -1) {
+if (getline(&input_line, &buffer_size, stdin) == -1)
+{
 free(input_line);
 exit(exit_status);
 }
@@ -37,7 +40,8 @@ exit(exit_status);
 remove_newline(input_line);
 remove_comment(input_line);
 command = tokenize(input_line, ";");
-for (i = 0; command[i] != NULL; i++) {
+for (i = 0; command[i] != NULL; i++)
+{
 current_args = tokenize(command[i], " ");
 if (current_args[0] == NULL)
 {
@@ -63,7 +67,8 @@ return ((exit_status));
  * @prompt: the prompt string to be printed
  * @fd: file descriptor to print to
  */
-void print_prompt(const char *prompt, int fd) {
+void print_prompt(const char *prompt, int fd)
+{
 size_t len = 0;
 while (prompt[len] != '\0') {
 len++;
