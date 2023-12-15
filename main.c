@@ -1,19 +1,14 @@
 #include "shell.h"
 
-char **command = NULL;
-char *input_line = NULL;
-char *shell_alias = NULL;
-int exit_status = 0;
-
 /**
- * main - entry point for the shell program
- * @argc: number of arguments
- * @argv: program arguments
- *
- * Implements a simple shell with basic commands.
- * Handles signals, parses input, and executes commands.
- * Returns: 0 on success
- */
+* main - entry point for the shell program
+* @argc: number of arguments
+* @argv: program arguments
+*
+* Implements a simple shell with basic commands.
+* Handles signals, parses input, and executes commands.
+* Returns: 0 on success
+*/
 
 int main(int argc __attribute__((unused)), char **argv) {
 char **current_args = NULL;
