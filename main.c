@@ -1,9 +1,9 @@
 #include "shell.h"
 
-char **command = NULL;
+/*char **command = NULL;
 char *input_line = NULL;
 char *shell_alias;
-int exit_status = 0;
+int exit_status = 0;*/
 
 /**
 * main - entry point for the shell program
@@ -23,7 +23,7 @@ signal(SIGINT, handle_interrupt);
 shell_alias = argv[0];
 
 signal(SIGINT, handle_interrupt);
-shell_alias = argv[0];
+shell_value.shell_alias = argv[0];
 
 while (1)
 {
