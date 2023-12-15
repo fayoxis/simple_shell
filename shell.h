@@ -35,20 +35,20 @@ void (*func)(char **args);
 } CommandFunction;
 
 extern char **environ;
-/*extern char *input_line;
+extern char *input_line;
 extern char **command;
 extern char *shell_alias;
 extern char **cmd_args;
-extern int status;*/
+extern int status;
 
-typedef struct {
+/*typedef struct {
     char **command;
     char *input_line;
     char *shell_alias;
     int exit_status;
 } Shellinfo;
 
-Shellinfo shell_value = {NULL, NULL, NULL, 0};
+Shellinfo shell_value = {NULL, NULL, NULL, 0};*/
 
 void print_prompt(const char *string, int fd);
 void remove_newline(char *str);
