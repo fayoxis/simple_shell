@@ -47,8 +47,8 @@ size_t i;
 if (ptr == NULL)
 {
 new_block = malloc(new_size);
-return new_block;
-} 
+return (new_block);
+}
 else if (new_size == old_size)
 {
 return (ptr);
@@ -57,7 +57,7 @@ else if (new_size == 0 && ptr != NULL)
 {
 free(ptr);
 return (NULL);
-} 
+}
 else
 {
 new_block = malloc(new_size);
@@ -69,7 +69,7 @@ for (i = 0; i < old_size && i < new_size; i++)
 }
 free(ptr);
 return (new_block);
-} 
+}
 else
 {
 return (NULL);
