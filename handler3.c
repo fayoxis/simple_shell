@@ -33,7 +33,8 @@ void handle_logical_operators(char* commands) {
         char* or_command = strtok(command, "||");
         bool success = false;
         while (or_command != NULL) {
-            exe_command(or_command);
+            int cmd_type = determine_command_type(tokenized_args);
+            exe_command(tokenized_args, cmd_type);
             success = true;
             break;
         }
@@ -43,4 +44,5 @@ void handle_logical_operators(char* commands) {
         command = strtok(NULL, "&&");
     }
 }
+
 
