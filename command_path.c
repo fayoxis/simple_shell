@@ -57,7 +57,7 @@ int i;
 if (path_env == NULL || _strlen(path_env) == 0)
 return (NULL);
 
-path_copy = malloc(sizeof(*path_copy) * (_strlen(path_env) + 1));
+path_copy = malloc(strlen(path_env) + 1);
 _strcpy(path_env, path_copy);
 
 path_dirs = tokenize(path_copy, ":");
