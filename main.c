@@ -19,8 +19,6 @@ int main(int argc __attribute__((unused)), char **argv)
 char **current_args = NULL;
 int i, command_type = 0;
 size_t buffer_size = 0;
-signal(SIGINT, handle_interrupt);
-shell_alias = argv[0];
 
 signal(SIGINT, handle_interrupt);
 shell_value.shell_alias = argv[0];
@@ -31,16 +29,16 @@ non_interact();
 print_prompt("$ ", STDOUT_FILENO);
 if (getline(&input_line, &buffer_size, stdin) == -1)
 {
-free(input_line);
-exit(exit_status);
+free(shell_value.input_line);
+exit(shell_value.exit_status);
 }
 
-remove_newline(input_line);
-remove_comment(input_line);
-command = tokenize(input_line, ";");
+remove_newline(shell_value.input_line);
+remove_comment(shell_value.input_line);
+shell_value.command = tokenize(shell_value.input_line, ";");
 for (i = 0; command[i] != NULL; i++)
 {
-current_args = tokenize(command[i], " ");
+current_args = tokenize(shell_value.command[i], " ");
 if (current_args[0] == NULL)
 {
 free(current_args);
@@ -52,11 +50,11 @@ command_type = classify_command(current_args[0]);
 initialize_command(current_args, command_type);
 free(current_args);
 }
-free(command);
+free(shell_value.command);
 }
 
-free(input_line);
-return ((exit_status));
+free(shell_value.input_line);
+return ((shell_value.exit_status));
 }
 
 
