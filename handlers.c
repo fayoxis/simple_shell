@@ -10,8 +10,10 @@
 size_t _strlen(const char *string)
 {
 size_t len = 0;
-if (string != NULL) {
-while (string[len] != '\0') {
+if (string != NULL)
+{
+while (string[len] != '\0')
+{
 len++;
 }
 }
@@ -34,10 +36,12 @@ print_prompt("\n$ ", STDIN_FILENO);
  * remove_newline - removes newline characters from a string
  * @str: string to be modified
  */
-void remove_newline(char *str) {
+void remove_newline(char *str)
+{
 int i = 0;
 while (str[i] != '\0') {
-if (str[i] == '\n' || str[i] == '\r') {
+if (str[i] == '\n' || str[i] == '\r')
+{
 str[i] = '\0';
 break;
 }
@@ -50,10 +54,13 @@ i++;
  * '#' character, including the '#' character
  * @input: input to be modified
  */
-void remove_comment(char *input) {
+void remove_comment(char *input)
+{
 int i = 0;
-while (input[i] != '\0') {
-if (input[i] == '#') {
+while (input[i] != '\0')
+{
+if (input[i] == '#')
+{
 input[i] = '\0';
 break;
 }
