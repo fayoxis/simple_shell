@@ -39,7 +39,8 @@ print_prompt("\n$ ", STDIN_FILENO);
 void remove_newline(char *str)
 {
 int i = 0;
-while (str[i] != '\0') {
+while (str[i] != '\0')
+{
 if (str[i] == '\n' || str[i] == '\r')
 {
 str[i] = '\0';
