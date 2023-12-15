@@ -4,8 +4,8 @@
  * _strspn -length of a prefix substring
  * @str: string to be searched
  * @accept: string containing characters to match
- *
- * Return: no of bytes in the initial segment of `str` which are part of `accept`
+ * Return: no of bytes in the initial
+ * segment of `str` which are part of `accept`
  */
 int _strspn(char *str, const char *accept) {
 int i = 0;
@@ -27,9 +27,11 @@ return (match);
  *
  * Return: index at which a char in `str` exists in `reject`
  */
-int _strcspn(char *str, const char *reject) {
+int _strcspn(char *str, const char *reject)
+{
 int len = 0, i;
-for (i = 0; str[i] != '\0'; i++) {
+for (i = 0; str[i] != '\0'; i++)
+{
 if (_strchr(reject, str[i]) != NULL)
 break;
 len++;
@@ -44,7 +46,8 @@ return (len);
  *
  * Return: pointer to the first occurrence of `c` in `s`
  */
-const char *_strchr(const char *s, char c) {
+const char *_strchr(const char *s, char c)
+{
 int i = 0;
 for (; s[i] != c && s[i] != '\0'; i++)
 ;
