@@ -37,14 +37,15 @@ void handle_logical_operators(char *commands) {
             char** tokenized_args = tokenize(or_command, " ");
             for (i = 0; tokenized_args[i] != NULL; i++) {
                 int cmd_type = classify_command(tokenized_args[0]);
-                exe_command(tokenized_args, cmd_type);
+                if (cmd_type != -1) {
+                    exe_command(tokenized_args, cmd_type);
+                    success = true;
+                }
             }
-
-            success = true;
-            break;
-        }
-        if (!success) {
-            break;
+            or_command = strtok(NULL, "||");
+            if (success) {
+                break;
+            }
         }
         command = strtok(NULL, "&&");
     }
