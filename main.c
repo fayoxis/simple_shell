@@ -16,6 +16,7 @@ int i, command_type = 0;
 size_t buffer_size = 0;
 signal(SIGINT, handle_interrupt);
 shell_alias = argv[0];
+int exit_status = 0;
 
 while (1) {
 non_interact();
