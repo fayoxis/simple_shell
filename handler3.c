@@ -27,7 +27,7 @@ char* replace_vars(char* command) {
 }
 
 
-/*void handle_logical_operators(char* commands) {
+void handle_logical_operators(char* commands) {
     char* command = strtok(commands, "&&");
     while (command != NULL) {
         char* or_command = strtok(command, "||");
@@ -45,9 +45,9 @@ char* replace_vars(char* command) {
         }
         command = strtok(NULL, "&&");
     }
-}*/
+}
 
-void handle_logical_operators(char *commands)
+/*void handle_logical_operators(char *commands)
 {
     char *save_ptr;
     char *command = _strtok(commands, "&&", &save_ptr);
@@ -73,7 +73,7 @@ void handle_logical_operators(char *commands)
 
         command = _strtok(NULL, "&&", &save_ptr);
     }
-}
+}*/
 
 
 
