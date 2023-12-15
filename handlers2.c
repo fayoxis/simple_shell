@@ -7,10 +7,12 @@
  * Return: no of bytes in the initial
  * segment of `str` which are part of `accept`
  */
-int _strspn(char *str, const char *accept) {
+int _strspn(char *str, const char *accept)
+{
 int i = 0;
 int match = 0;
-while (str[i] != '\0') {
+while (str[i] != '\0')
+{
 if (_strchr(accept, str[i]) == NULL)
 break;
 match++;
