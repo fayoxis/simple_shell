@@ -11,7 +11,7 @@ int exit_status = 0;
 int i;
 
 if (!isatty(STDIN_FILENO)) {
-while (getline(&input_line, &buffer_size, stdin) != -1) {
+while (_getline(&input_line, &buffer_size, stdin) != -1) {
 remove_newline(input_line);
 remove_comment(input_line);
 cmd_args = tokenize(input_line, ";");
@@ -33,3 +33,43 @@ free(input_line);
 exit(exit_status);
 }
 }
+
+#include "shell.h"
+
+/**
+ * custom_getline - Reads a line from standard input
+ *
+ * Return: The read line (including the newline character), or NULL on failure or EOF
+ */
+char *_getline(void)
+{
+char *command = NULL;
+size_t bufsize = 0;
+ssize_t characters_read;
+
+characters_read = getline(&line, &bufsize, stdin);
+
+if (characters_read == -1)
+{
+if (feof(stdin))
+{
+/* EOF reached, free memory and return NULL */
+free(command);
+return (NULL);
+}
+else
+{
+/* Error reading line, free memory and return NULL */
+perror("error");
+free(line);
+return NULL;
+}
+}
+
+/* Remove the newline character from the end of the line */
+if (line[characters_read - 1] == '\n')
+line[characters_read - 1] = '\0';
+
+return (command);
+}
+
