@@ -26,7 +26,6 @@ print_prompt("\n", STDOUT_FILENO);
 void shell_exit(char **args)
 {
 int num_args = 0, exit_status = 0;
-char **cmd_args;
 
 for (; args[num_args] != NULL; num_args++)
 ;
@@ -35,7 +34,6 @@ if (num_args == 1)
 {
 free(args);
 free(input_line);
-free(cmd_args);
 exit(exit_status);
 }
 else if (num_args == 2)
@@ -53,7 +51,6 @@ else
 {
 free(input_line);
 free(args);
-free(cmd_args);
 exit(exit_status);
 }
 }
