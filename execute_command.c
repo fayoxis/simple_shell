@@ -37,7 +37,6 @@ exe_command(current_args, type_cmd);
  */
 void exe_command(char **tokenized_args, int cmd_type)
 {
-int status;
 void (*cmd_func)(char **);
 if (cmd_type == COMMAND_EXTERNAL)
 {
