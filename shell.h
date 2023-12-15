@@ -69,5 +69,6 @@ void execute_path_command(char **args);
 
 void print_environment(char **args __attribute__((unused)));
 void shell_exit(char **args);
+char *_getline(void);
 
 #endif
