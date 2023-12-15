@@ -8,7 +8,7 @@ char* replace_vars(char* command) {
     char* rest = command;
     char buffer[10];
 
-    while ((token = strtok_r(rest, " ", &rest))) {
+    while ((token = _strtok(rest, " ", &rest))) {
         if (strcmp(token, "$?") == 0) {
             sprintf(buffer, "%d", last_exit_code);
             strcat(replaced_command, buffer);
@@ -27,15 +27,15 @@ char* replace_vars(char* command) {
 }
 
 void handle_logical_operators(char* commands) {
-    char* command = strtok(commands, "&&");
-    char** tokenized_args = tokenize_arguments(or_command);
-    int cmd_type = determine_command_type(tokenized_args);
+    char* command = _strtok(commands, "&&");
+    char** tokenized_args = tokenize(or_command);
+    int cmd_type = classify_command(tokenized_args);
     while (command != NULL) {
-        char* or_command = strtok(command, "||");
+        char* or_command = _strtok(command, "||");
         bool success = false;
         while (or_command != NULL) {
             
-            exe_command(tokenized_args, cmd_type);
+        exe_command(tokenized_args, cmd_type);
 
             success = true;
             break;
@@ -43,7 +43,7 @@ void handle_logical_operators(char* commands) {
         if (!success) {
             break;
         }
-        command = strtok(NULL, "&&");
+        command = _strtok(NULL, "&&");
     }
 }
 
