@@ -46,7 +46,8 @@ i++;
 }
 
 /**
- * remove_comment - removes everything after a '#' character, including the '#' character
+ * remove_comment - removes everything after a
+ * '#' character, including the '#' character
  * @input: input to be modified
  */
 void remove_comment(char *input) {
