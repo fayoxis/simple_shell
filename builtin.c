@@ -33,25 +33,25 @@ for (; args[num_args] != NULL; num_args++)
 if (num_args == 1)
 {
 free(args);
-free(shell_value.input_line);
-exit(shell_value.exit_status);
+free(input_line);
+exit(exit_status);
 }
 else if (num_args == 2)
 {
-shell_value.exit_status = _atoi(args[1]);
-if (shell_value.exit_status == -1)
+exit_status = _atoi(args[1]);
+if (exit_status == -1)
 {
-print_prompt(shell_value.shell_alias, STDERR_FILENO);
+print_prompt(shell_alias, STDERR_FILENO);
 print_prompt(": 1: exit: negative number: ", STDERR_FILENO);
 print_prompt(args[1], STDERR_FILENO);
 print_prompt("\n", STDERR_FILENO);
-shell_value.exit_status = 2;
+exit_status = 2;
 }
 else
 {
-free(shell_value.input_line);
+free(input_line);
 free(args);
-exit(shell_value.exit_status);
+exit(exit_status);
 }
 }
 else
