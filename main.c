@@ -19,7 +19,7 @@ int main(int argc __attribute__((unused)), char **argv)
 char **current_args = NULL;
 int i, command_type = 0;
 size_t buffer_size = 0;
-
+char commands[] = "ls /var && ls /var && ls /var && ls /hbtn && ls /hbtn";
 signal(SIGINT, handle_interrupt);
 shell_alias = argv[0];
 
@@ -48,6 +48,8 @@ command_type = classify_command(current_args[0]);
 
 /* initialize command */
 initialize_command(current_args, command_type);
+handle_logical_operators(commands);
+
 free(current_args);
 }
 free(command);
