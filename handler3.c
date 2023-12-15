@@ -29,13 +29,12 @@ char* replace_vars(char* command) {
 
 void handle_logical_operators(char* commands) {
     char* command = strtok(commands, "&&");
-    int i;
+     int i;
     while (command != NULL) {
         char* or_command = strtok(command, "||");
         bool success = false;
         while (or_command != NULL) {
             char** tokenized_args = tokenize(or_command, " ");
-            
             for (i = 0; tokenized_args[i] != NULL; i++) {
                 int cmd_type = classify_command(tokenized_args[0]);
                 exe_command(tokenized_args[i], cmd_type);
@@ -50,4 +49,3 @@ void handle_logical_operators(char* commands) {
         command = strtok(NULL, "&&");
     }
 }
-
