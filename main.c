@@ -1,5 +1,7 @@
 #include "shell.h"
 
+char *shell_alias;
+
 /**
 * main - entry point for the shell program
 * @argc: number of arguments
@@ -19,6 +21,7 @@ int i, command_type = 0;
 size_t buffer_size = 0;
 
 signal(SIGINT, handle_interrupt);
+shell_alias = argv[0];
 
 while (1)
 {
