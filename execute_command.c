@@ -29,7 +29,7 @@ exe_command(current_args, type_cmd);
 
 /**
  * exe_command - Executes the specified command based on its type
- * @tokenize_args: Array of command arguments
+ * @tokenized_args: Array of command arguments
  * @cmd_type: Type of the command (EXTERNAL_COMMAND,
  * INTERNAL_COMMAND, PATH_COMMAND)
  *
