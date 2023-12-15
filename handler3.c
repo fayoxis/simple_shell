@@ -28,12 +28,13 @@ char* replace_vars(char* command) {
 
 void handle_logical_operators(char* commands) {
     char* command = strtok(commands, "&&");
+    char** tokenized_args = tokenize_arguments(or_command);
+    int cmd_type = determine_command_type(tokenized_args);
     while (command != NULL) {
         char* or_command = strtok(command, "||");
         bool success = false;
         while (or_command != NULL) {
-            char** tokenized_args = tokenize_arguments(or_command);
-            int cmd_type = determine_command_type(tokenized_args);
+            
             exe_command(tokenized_args, cmd_type);
 
             success = true;
