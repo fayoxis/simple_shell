@@ -1,9 +1,7 @@
 #include "shell.h"
 
-int status;
-
 /**
- * initializer - intializes execution
+ * initialize_command - intializes execution
  * @current_args: Array representing the current command
  * @type_cmd: Parsed command type
  *
@@ -12,6 +10,7 @@ int status;
 void initialize_command(char **current_args, int type_cmd)
 {
 pid_t pid;
+int status;
 
 if (type_cmd == COMMAND_EXTERNAL || type_cmd == COMMAND_PATH)
 {
@@ -30,7 +29,7 @@ exe_command(current_args, type_cmd);
 
 /**
  * exe_command - Executes the specified command based on its type
- * @cmd_args: Array of command arguments
+ * @tokenize_args: Array of command arguments
  * @cmd_type: Type of the command (EXTERNAL_COMMAND,
  * INTERNAL_COMMAND, PATH_COMMAND)
  *
@@ -38,6 +37,7 @@ exe_command(current_args, type_cmd);
  */
 void exe_command(char **tokenized_args, int cmd_type)
 {
+int status;
 void (*cmd_func)(char **);
 if (cmd_type == COMMAND_EXTERNAL)
 {
