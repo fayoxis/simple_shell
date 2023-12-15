@@ -1,7 +1,5 @@
 #include "shell.h"
 
-char **cmd_args;
-
 /**
 * print_environment - Prints the current environment
 * @args: Command arguments (unused)
@@ -27,6 +25,7 @@ print_prompt("\n", STDOUT_FILENO);
 */
 void shell_exit(char **args)
 {
+char **cmd_args;
 int num_args = 0, exit_status = 0;
 
 for (; args[num_args] != NULL; num_args++)
