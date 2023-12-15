@@ -1,6 +1,6 @@
 #include "shell.h"
 
-char **cmd_args;
+/*char **cmd_args;*/
 
 /**
 * print_environment - Prints the current environment
@@ -74,18 +74,16 @@ int _atoi(char *str)
 {
 unsigned int result = 0;
 
-do
-{
+do {
 if (*str == '-')
-return -1;
+return (-1);
 else if ((*str < '0' || *str > '9') && *str != '\0')
-return -1;
+return (-1);
 else if (*str >= '0' && *str <= '9')
 result = (result * 10) + (*str - '0');
 else if (result > 0)
 break;
-}
-while (*str++);
+} while (*str++);
 
-return result;
+return (result);
 }
