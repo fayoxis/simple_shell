@@ -94,21 +94,3 @@ i++;
 return ((str1[i] - str2[i]));
 }
 
-/**
- * _strcat - Concatenates two strings
- * @dest: String to be concatenated to
- * @src:  String to concatenate
- *
- * Return: Address of the new string
- */
-char *_strcat(char *dest, char *src)
-{
-char *result = NULL;
-int len_dest = _strlen(dest);
-int len_src = _strlen(src);
-result = malloc(sizeof(*result) * (len_dest + len_src + 1));
-_strcpy(dest, result);
-_strcpy(src, result + len_dest);
-result[len_dest + len_src] = '\0';
-return (result);
-}
