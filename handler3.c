@@ -26,16 +26,16 @@ char* replace_vars(char* command) {
     return replaced_command;
 }
 
+
 void handle_logical_operators(char* commands) {
-    char* command = _strtok(commands, "&&");
-    char** tokenized_args = tokenize(command);
-    int cmd_type = classify_command(tokenized_args);
+    char* command = strtok(commands, "&&");
     while (command != NULL) {
-        char* or_command = _strtok(command, "||");
+        char* or_command = strtok(command, "||");
         bool success = false;
         while (or_command != NULL) {
-            
-        exe_command(tokenized_args, cmd_type);
+            char** tokenized_args = tokenize(or_command, " ");  
+            int cmd_type = classify_command(tokenized_args);
+            exe_command(tokenized_args, cmd_type);
 
             success = true;
             break;
@@ -43,7 +43,7 @@ void handle_logical_operators(char* commands) {
         if (!success) {
             break;
         }
-        command = _strtok(NULL, "&&");
+        command = strtok(NULL, "&&");
     }
 }
 
