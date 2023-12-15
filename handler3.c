@@ -25,3 +25,22 @@ char* replace_vars(char* command) {
     replaced_command[strlen(replaced_command) - 1] = '\0';
     return replaced_command;
 }
+
+
+void handle_logical_operators(char* commands) {
+    char* command = strtok(commands, "&&");
+    while (command != NULL) {
+        char* or_command = strtok(command, "||");
+        bool success = false;
+        while (or_command != NULL) {
+            exe_command(or_command);
+            success = true;
+            break;
+        }
+        if (!success) {
+            break;
+        }
+        command = strtok(NULL, "&&");
+    }
+}
+
