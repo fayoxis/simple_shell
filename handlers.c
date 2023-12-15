@@ -9,15 +9,13 @@
 
 size_t _strlen(const char *string)
 {
-    size_t len = 0;
-
-    if (string != NULL) {
-        while (string[len] != '\0') {
-            len++;
-        }
-    }
-
-    return len;
+size_t len = 0;
+if (string != NULL) {
+while (string[len] != '\0') {
+len++;
+}
+}
+return (len);
 }
 
 /**
@@ -28,8 +26,8 @@ size_t _strlen(const char *string)
  */
 void handle_interrupt(int signum)
 {
-	if (signum == SIGINT)
-		print_prompt("\n$ ", STDIN_FILENO);
+if (signum == SIGINT)
+print_prompt("\n$ ", STDIN_FILENO);
 }
 
 /**
@@ -37,15 +35,14 @@ void handle_interrupt(int signum)
  * @str: string to be modified
  */
 void remove_newline(char *str) {
-    int i = 0;
-
-    while (str[i] != '\0') {
-        if (str[i] == '\n' || str[i] == '\r') {
-            str[i] = '\0';
-            break;
-        }
-        i++;
-    }
+int i = 0;
+while (str[i] != '\0') {
+if (str[i] == '\n' || str[i] == '\r') {
+str[i] = '\0';
+break;
+}
+i++;
+}
 }
 
 /**
@@ -53,14 +50,12 @@ void remove_newline(char *str) {
  * @input: input to be modified
  */
 void remove_comment(char *input) {
-    int i = 0;
-
-    while (input[i] != '\0') {
-        if (input[i] == '#') {
-            input[i] = '\0';
-            break;
-        }
-        i++;
-    }
+int i = 0;
+while (input[i] != '\0') {
+if (input[i] == '#') {
+input[i] = '\0';
+break;
 }
-
+i++;
+}
+}
