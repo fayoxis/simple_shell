@@ -1,6 +1,6 @@
 #include "shell.h"
 
-*char **command = NULL;
+char **command = NULL;
 char *input_line = NULL;
 char *shell_alias;
 int exit_status = 0;*
