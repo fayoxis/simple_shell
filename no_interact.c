@@ -47,7 +47,7 @@ char *command = NULL;
 size_t bufsize = 0;
 ssize_t characters_read;
 
-characters_read = getline(&line, &bufsize, stdin);
+characters_read = getline(&command, &bufsize, stdin);
 
 if (characters_read == -1)
 {
@@ -61,14 +61,14 @@ else
 {
 /* Error reading line, free memory and return NULL */
 perror("error");
-free(line);
+free(command);
 return NULL;
 }
 }
 
 /* Remove the newline character from the end of the line */
-if (line[characters_read - 1] == '\n')
-line[characters_read - 1] = '\0';
+if (command[characters_read - 1] == '\n')
+command[characters_read - 1] = '\0';
 
 return (command);
 }
