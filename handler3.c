@@ -33,9 +33,11 @@ void handle_logical_operators(char* commands) {
         char* or_command = strtok(command, "||");
         bool success = false;
         while (or_command != NULL) {
-            char** tokenized_args = tokenize(or_command, " ");  
-            int cmd_type = classify_command(tokenized_args);
-            exe_command(tokenized_args, cmd_type);
+            char** tokenized_args = tokenize(or_command, " ");
+            for (int i = 0; tokenized_args[i] != NULL; i++) {
+                int cmd_type = classify_command(tokenized_args[i]);
+                exe_command(tokenized_args[i], cmd_type);
+            }
 
             success = true;
             break;
@@ -46,34 +48,5 @@ void handle_logical_operators(char* commands) {
         command = strtok(NULL, "&&");
     }
 }
-
-/*void handle_logical_operators(char *commands)
-{
-    char *save_ptr;
-    char *command = _strtok(commands, "&&", &save_ptr);
-    while (command != NULL)
-    {
-        char *or_command;
-        char *tokenized_args = tokenize(command);
-        int cmd_type = classify_command(tokenized_args);
-        bool success = false;
-
-        while ((or_command = _strtok(NULL, "||", &save_ptr)) != NULL)
-        {
-            exe_command(tokenized_args, cmd_type);
-
-            success = true;
-            break;
-        }
-
-        if (!success)
-        {
-            break;
-        }
-
-        command = _strtok(NULL, "&&", &save_ptr);
-    }
-}*/
-
 
 
