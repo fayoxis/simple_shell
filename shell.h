@@ -83,4 +83,5 @@ void print_environment(char **args __attribute__((unused)));
 void shell_exit(char **args);
 char *_getline(void);
 char* replace_vars(char* command);
+void handle_logical_operators(char **commands);
 #endif
