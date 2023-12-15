@@ -72,7 +72,7 @@ void execute_external_command(char **args)
 {
     if (execve(args[0], args, NULL) == -1)
     {
-        perror(_getenv("PWD"));
+        perror("error");
         exit(2);
     }
 }
@@ -87,7 +87,7 @@ void execute_path_command(char **args)
 {
     if (execve(command_path(args[0]), args, NULL) == -1)
     {
-        perror(_getenv("PWD"));
+        perror("error");
         exit(2);
     }
 }
