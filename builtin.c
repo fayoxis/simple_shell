@@ -25,8 +25,8 @@ print_prompt("\n", STDOUT_FILENO);
 */
 void shell_exit(char **args)
 {
-char **cmd_args;
 int num_args = 0, exit_status = 0;
+char **cmd_args;
 
 for (; args[num_args] != NULL; num_args++)
 ;
