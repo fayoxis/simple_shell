@@ -35,7 +35,7 @@ void handle_logical_operators(char* commands) {
         while (or_command != NULL) {
             char** tokenized_args = tokenize(or_command, " ");
             for (int i = 0; tokenized_args[i] != NULL; i++) {
-                int cmd_type = classify_command(tokenized_args[i]);
+                int cmd_type = classify_command(tokenized_args[0]);
                 exe_command(tokenized_args[i], cmd_type);
             }
 
