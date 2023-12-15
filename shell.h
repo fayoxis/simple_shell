@@ -33,8 +33,8 @@ char *name;
 void (*func)(char **args);
 } CommandFunction;
 
-/*extern char **environ;
-extern char *input_line;
+extern char **environ;
+/*extern char *input_line;
 extern char **command;
 extern char *shell_alias;
 extern char **cmd_args;
