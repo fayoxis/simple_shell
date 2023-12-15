@@ -6,8 +6,6 @@ char* replace_vars(char* command) {
     char* replaced_command = malloc(strlen(command) + 1);
     char* token;
     char* rest = command;
-    char* variable;
-    char* value;
     char buffer[10];
 
     while ((token = strtok_r(rest, " ", &rest))) {
