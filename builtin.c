@@ -25,7 +25,7 @@ print_prompt("\n", STDOUT_FILENO);
 */
 void shell_exit(char **args)
 {
-int num_args = 0, exit_status = 0;
+int num_args = 0, shell_value.exit_status = 0;
 
 for (; args[num_args] != NULL; num_args++)
 ;
