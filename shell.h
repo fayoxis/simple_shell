@@ -24,6 +24,7 @@
 /*#define min(x, y) (((x) < (y)) ? (x) : (y))*/
 
 /**
+ * struct  - this is singly linked list
  * command_function - Represents a function associated with a command
  */
 typedef struct
