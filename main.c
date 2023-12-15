@@ -1,6 +1,9 @@
 #include "shell.h"
 
+char **command = NULL;
+char *input_line = NULL;
 char *shell_alias;
+int exit_status = 0;
 
 /**
 * main - entry point for the shell program
@@ -13,12 +16,11 @@ char *shell_alias;
 */
 int main(int argc __attribute__((unused)), char **argv)
 {
-char **command = NULL;
-char *input_line = NULL;
-int exit_status = 0;
 char **current_args = NULL;
 int i, command_type = 0;
 size_t buffer_size = 0;
+signal(SIGINT, handle_interrupt);
+shell_alias = argv[0];
 
 signal(SIGINT, handle_interrupt);
 shell_alias = argv[0];
