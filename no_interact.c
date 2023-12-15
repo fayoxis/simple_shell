@@ -10,6 +10,7 @@ int cmd_type = 0;
 size_t buffer_size = 0;
 int exit_status = 0;
 int i;
+char **cmd_args;
 
 if (!isatty(STDIN_FILENO))
 {
