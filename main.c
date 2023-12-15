@@ -64,8 +64,7 @@ return ((exit_status));
 void print_prompt(const char *prompt, int fd)
 {
 size_t len = 0;
-while (prompt[len] != '\0') {
+while (prompt[len] != '\0')
 len++;
-}
 write(fd, prompt, len);
 }
