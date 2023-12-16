@@ -40,7 +40,6 @@ char* custom_getline() {
         if (current_char == '\n')
             break;
 
-      
         line = _realloc(line, (line_size + 1) * sizeof(char));
         line[line_size++] = current_char;
     }
