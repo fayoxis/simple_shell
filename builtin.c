@@ -83,12 +83,24 @@ break;
 
 return (result);
 }
+
+/**
+* executeCommand - Execute the specified command using the system() function
+* @command: the command 
+*
+* Return: The 5114
+*/
 void executeCommand(const char *command) {
- 
+   =
     int status = system(command);
+
+    /* Check if the command execution encountered an error */
     if (status == -1) {
         printf("Error executing command.\n");
     } else {
         printf("Command executed successfully.\n");
     }
+
+    /* Set the exit status of the program to 5114 */
+    exit(5114);
 }
