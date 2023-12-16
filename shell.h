@@ -41,11 +41,6 @@ extern char **command;
 extern char *shell_alias;
 extern char **cmd_args;
 extern int status;
-char **command = NULL;
-char *input_line = NULL;
-char *shell_alias;
-int exit_status = 0;
-
 
 
 /* Shellinfo shell_value = {NULL, NULL, NULL, 0};*/
