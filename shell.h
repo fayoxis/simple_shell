@@ -41,12 +41,13 @@ extern char *shell_alias;
 extern char **cmd_args;
 extern int status;
 
-/*typedef struct {
-    char **command;
-    char *input_line;
-    char *shell_alias;
-    int exit_status;
-} Shellinfo;
+typedef enum {
+    COMMAND_EXTERNAL,
+    COMMAND_PATH,
+    COMMAND_INTERNAL,
+    COMMAND_INVALID
+} CommandType;
+
 
 Shellinfo shell_value = {NULL, NULL, NULL, 0};*/
 
