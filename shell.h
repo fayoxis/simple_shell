@@ -42,10 +42,10 @@ extern char **cmd_args;
 extern int status;
 
 typedef enum {
-    COMMAND_EXTERNAL,
-    COMMAND_PATH,
-    COMMAND_INTERNAL,
-    COMMAND_INVALID
+    COMMAND_EXTERNAL;
+    COMMAND_PATH;
+    COMMAND_INTERNAL;
+    COMMAND_INVALID;
 } CommandType;
 
 
