@@ -37,51 +37,30 @@ exe_command(current_args, type_cmd);
  */
 void exe_command(char **tokenized_args, int cmd_type)
 {
-    void (*cmd_func)(char **);
-    bool success = true;
-
-    if (cmd_type == COMMAND_EXTERNAL)
-    {
-        execute_external_command(tokenized_args);
-    }
-    else if (cmd_type == COMMAND_PATH)
-    {
-        execute_path_command(tokenized_args);
-    }
-    else if (cmd_type == COMMAND_INTERNAL)
-    {
-        cmd_func = command_func(tokenized_args[0]);
-        cmd_func(tokenized_args);
-    }
-    else if (cmd_type == COMMAND_INVALID)
-    {
-        print_prompt(shell_alias, STDERR_FILENO);
-        print_prompt(": 1: ", STDERR_FILENO);
-        print_prompt(tokenized_args[0], STDERR_FILENO);
-        print_prompt(": No such command\n", STDERR_FILENO);
-        success = false;
-    }
-
-    if (tokenized_args != NULL && tokenized_args[0] != NULL)
-    {
-        if (strcmp(tokenized_args[0], "&&") == 0)
-        {
-            if (success)
-            {
-               
-                exe_command(&tokenized_args[1], classify_command(tokenized_args[1]));
-            }
-        }
-        else if (strcmp(tokenized_args[0], "||") == 0)
-        {
-            if (!success)
-            {
-      
-                exe_command(&tokenized_args[1], classify_command(tokenized_args[1]));
-            }
-        }
-    }
+void (*cmd_func)(char **);
+if (cmd_type == COMMAND_EXTERNAL)
+{
+execute_external_command(tokenized_args);
 }
+else if (cmd_type == COMMAND_PATH)
+{
+execute_path_command(tokenized_args);
+}
+else if (cmd_type == COMMAND_INTERNAL)
+{
+cmd_func = command_func(tokenized_args[0]);
+cmd_func(tokenized_args);
+}
+else if (cmd_type == COMMAND_INVALID)
+{
+print_prompt(shell_alias, STDERR_FILENO);
+print_prompt(": 1: ", STDERR_FILENO);
+print_prompt(tokenized_args[0], STDERR_FILENO);
+print_prompt(": No such command\n", STDERR_FILENO);
+
+}
+}
+
 /**
  * execute_external_command - Executes an external command
  * @args: Array of command arguments
