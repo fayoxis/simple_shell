@@ -18,10 +18,11 @@ void free_s(char **str_arr)
 
 int customGetline(char **ptr, size_t *length) {
     static char buffer[READ_BUF_SIZE];
-    static size_t index, bufferLength;
+    static size_t index = 0, bufferLength = 0;
     size_t k;
     ssize_t readResult = 0, seekResult = 0;
-    char *p = NULL, *new_p = NULL, *c;
+    char *p = NULL, *new_p = NULL;
+    const char *c; 
 
     p = *ptr;
     if (p && length)
@@ -33,14 +34,14 @@ int customGetline(char **ptr, size_t *length) {
     if (readResult == -1 || (readResult == 0 && bufferLength == 0))
         return -1;
 
-    c = _strchr(buffer + index, '\n');
+    c = strchr(buffer + index, '\n'); // Use strchr instead of _strchr
     k = c ? 1 + (unsigned int)(c - buffer) : bufferLength;
-    new_p = _realloc(p, seekResult, seekResult ? seekResult + k : k + 1);
+    new_p = realloc(p, seekResult ? seekResult + k : k + 1);
     if (!new_p) /* MALLOC FAILURE! */
         return p ? (free(p), -1) : -1;
 
     if (seekResult)
-        _strncat(new_p, buffer + index, k - index);
+        strncat(new_p, buffer + index, k - index);
     else
         strncpy(new_p, buffer + index, k - index + 1);
 
