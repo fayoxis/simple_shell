@@ -22,7 +22,7 @@ int customGetline(char **ptr, size_t *length) {
     size_t k;
     ssize_t readResult = 0, seekResult = 0;
     char *p = NULL, *new_p = NULL;
-    const char *c; 
+    const char *c;
 
     p = *ptr;
     if (p && length)
@@ -41,9 +41,9 @@ int customGetline(char **ptr, size_t *length) {
         return p ? (free(p), -1) : -1;
 
     if (seekResult)
-        _strncat(new_p, buffer + index, k - index);
+        new_p = _strncat(new_p, buffer + index, k - index);
     else
-        _strncpy(new_p, buffer + index, k - index + 1);
+        new_p = _strncpy(new_p, buffer + index, k - index + 1);
 
     seekResult += k - index;
     index = k;
@@ -54,6 +54,7 @@ int customGetline(char **ptr, size_t *length) {
     *ptr = p;
     return seekResult;
 }
+
 /**
  **_strncat - concatenates two strings
  *@dest: the first string
