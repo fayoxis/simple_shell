@@ -1,4 +1,4 @@
-#include "shell.h" 
+/* #include "shell.h" 
 
 int last_exit_code = 0;
 
@@ -57,3 +57,4 @@ void process_logical_operators(char **commands, int num_commands) {
     }
 }
 
+*/
