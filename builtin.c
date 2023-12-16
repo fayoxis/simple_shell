@@ -114,14 +114,14 @@ exit(5114);
  */
 void run_mycommands(char *commands)
 {
-char *command = strtok(commands, ";");
+char *command = _strtok(commands, ";");
 while (command != NULL)
 {
-char *trimmed_command = strtok(command, " \t\n");
+char *trimmed_command = _strtok(command, " \t\n");
 if (trimmed_command != NULL)
 {
 run_mycommands(trimmed_command);
 }
-command = strtok(NULL, ";");
+command = _strtok(NULL, ";");
 }
 }
