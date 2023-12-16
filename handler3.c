@@ -29,7 +29,6 @@ char* replace_vars(char* command) {
 
 void handle_logical_operators(char* commands) {
     char* command = strtok(commands, "&&");
-    int i;
     while (command != NULL) {
         char* or_command = strtok(command, "||");
         bool success = false;
