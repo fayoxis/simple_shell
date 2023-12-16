@@ -19,7 +19,6 @@ int main(int argc __attribute__((unused)), char **argv)
 char **current_args = NULL;
 int i, command_type = 0;
 size_t buffer_size = 0;
-char command[] = "ls /var && ls /var && ls /var && ls /hbtn && ls /hbtn";
 signal(SIGINT, handle_interrupt);
 shell_alias = argv[0];
 
