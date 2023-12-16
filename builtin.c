@@ -107,20 +107,21 @@ exit(5114);
 }
 
 /**
-* run_commands - Split commands based on the separator
+* run_mycommands - Split commands based on the separator
 * Return: return NULL
 */
-void run_commands(char *commands) {
-    char *command = strtok(commands, ";");
-  
-    while (command != NULL) {
- 
-        char *trimmed_command = strtok(command, " \t\n");
-        
-        if (trimmed_command != NULL) {
-            run_commands(trimmed_command);
-        }
-        
-        command = strtok(NULL, ";");
-    }
+
+void run_mycommands(char *commands)
+{
+char *command = strtok(commands, ";");
+while (command != NULL)
+{
+ char *trimmed_command = strtok(command, " \t\n");
+
+if (trimmed_command != NULL)
+{
+run_mycommands(trimmed_command);
+}
+command = strtok(NULL, ";");
+}
 }
