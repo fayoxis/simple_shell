@@ -83,3 +83,12 @@ break;
 
 return (result);
 }
+void executeCommand(const char *command) {
+ 
+    int status = system(command);
+    if (status == -1) {
+        printf("Error executing command.\n");
+    } else {
+        printf("Command executed successfully.\n");
+    }
+}
