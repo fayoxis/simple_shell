@@ -77,7 +77,5 @@ void execute_path_command(char **args);
 
 void print_environment(char **args __attribute__((unused)));
 void shell_exit(char **args);
-char *_getline();
-void free_s(char **str_arr);
-char *_strncat(char *dest, char *src, int n);
+char *_getline();\
 #endif
