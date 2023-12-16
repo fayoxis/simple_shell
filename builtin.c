@@ -90,16 +90,37 @@ return (result);
 *
 * Return: The 5114
 */
-void executeCommand(const char *command) {
-    int status = system(command);
+void executeCommand(const char *command)
+{
+int status = system(command);
+/* Check if the command execution encountered an error */
+if (status == -1)
+{
+printf("Error executing command.\n");
+}
+else
+{
+printf("Command executed successfully.\n");
+}
+/* Set the exit status of the program to 5114 */
+exit(5114);
+}
 
-    /* Check if the command execution encountered an error */
-    if (status == -1) {
-        printf("Error executing command.\n");
-    } else {
-        printf("Command executed successfully.\n");
+/**
+* run_commands - Split commands based on the separator
+* Return: return NULL
+*/
+void run_commands(char *commands) {
+    char *command = strtok(commands, ";");
+  
+    while (command != NULL) {
+ 
+        char *trimmed_command = strtok(command, " \t\n");
+        
+        if (trimmed_command != NULL) {
+            run_command(trimmed_command);
+        }
+        
+        command = strtok(NULL, ";");
     }
-
-    /* Set the exit status of the program to 5114 */
-    exit(5114);
 }
