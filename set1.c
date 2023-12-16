@@ -16,7 +16,7 @@ void free_s(char **str_arr)
 }
 
 
-char* _getline() {
+char* custom_getline() {
     static char buffer[BUFFER_SIZE];
     static int buffer_index = 0;
     static int buffer_size = 0;
@@ -26,13 +26,13 @@ char* _getline() {
     char current_char;
 
     while (1) {
-    
         if (buffer_index >= buffer_size) {
-            buffer_size = read(buffer, sizeof(char), BUFFER_SIZE, stdin);
-            buffer_index = 0;
+            buffer_size = read(STDIN_FILENO, buffer, BUFFER_SIZE);
 
-            if (buffer_size == 0)
+            if (buffer_size <= 0)
                 break;
+
+            buffer_index = 0;
         }
 
         current_char = buffer[buffer_index++];
@@ -40,9 +40,11 @@ char* _getline() {
         if (current_char == '\n')
             break;
 
+      
         line = _realloc(line, (line_size + 1) * sizeof(char));
         line[line_size++] = current_char;
     }
+
     line = _realloc(line, (line_size + 1) * sizeof(char));
     line[line_size] = '\0';
 
