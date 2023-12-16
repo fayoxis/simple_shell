@@ -48,7 +48,6 @@ command_type = classify_command(current_args[0]);
 
 /* initialize command */
 initialize_command(current_args, command_type);
-handle_logical_operators(commands);
 
 free(current_args);
 }
