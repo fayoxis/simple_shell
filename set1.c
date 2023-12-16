@@ -1,3 +1,4 @@
+#include "shell.h"
 /**
  * free_s - frees an array of strings
  * @str_arr: array of strings
