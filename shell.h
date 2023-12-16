@@ -18,6 +18,7 @@
 #define COMMAND_INTERNAL 2
 #define COMMAND_PATH 3
 #define COMMAND_INVALID -1
+#define READ_BUF_SIZE 1024
 
 #define STDOUT_FILENO 1
 #define F_OK 0
