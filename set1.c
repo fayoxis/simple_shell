@@ -16,7 +16,7 @@ void free_s(char **str_arr)
 }
 
 
-char* getline() {
+char* _getline() {
     static char buffer[BUFFER_SIZE];
     static int buffer_index = 0;
     static int buffer_size = 0;
