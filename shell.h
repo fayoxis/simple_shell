@@ -49,7 +49,7 @@ typedef enum {
 } CommandType;
 
 
-Shellinfo shell_value = {NULL, NULL, NULL, 0};*/
+/* Shellinfo shell_value = {NULL, NULL, NULL, 0};*/
 
 void print_prompt(const char *string, int fd);
 void remove_newline(char *str);
