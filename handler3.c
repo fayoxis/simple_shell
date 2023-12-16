@@ -36,14 +36,11 @@ void handle_logical_operators(char* commands) {
         while (or_command != NULL) {
             if (strcmp(or_command, "&&") != 0 && strcmp(or_command, "||") != 0) {
                 char** tokenized_args = tokenize(or_command, " ");
-                for (i = 0; tokenized_args[i] != NULL; i++) {
-                    int cmd_type = classify_command(tokenized_args[i]);
-                    if (cmd_type != COMMAND_INVALID) {
-                        exe_command(tokenized_args, cmd_type);
-                        success = true;
-                    }
+                int cmd_type = classify_command(tokenized_args[0]);
+                if (cmd_type != COMMAND_INVALID) {
+                    exe_command(tokenized_args, cmd_type);
+                    success = true;
                 }
-            
                 free(tokenized_args);
             }
             or_command = strtok(NULL, "||");
