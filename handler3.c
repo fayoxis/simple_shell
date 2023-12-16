@@ -27,26 +27,33 @@ char* replace_vars(char* command) {
 }
 
 
-void handle_logical_operators(char* commands) {
-    char* command = strtok(commands, "&&");
-    while (command != NULL) {
-        char* or_command = strtok(command, "||");
-        bool success = false;
-        while (or_command != NULL) {
-            if (strcmp(or_command, "&&") != 0 && strcmp(or_command, "||") != 0) {
-                char** tokenized_args = tokenize(or_command, " ");
-                int cmd_type = classify_command(tokenized_args[0]);
-                if (cmd_type != COMMAND_INVALID) {
-                    exe_command(tokenized_args, cmd_type);
-                    success = true;
+void process_logical_operators(char **commands, int num_commands) {
+    int i = 0;
+    while (i < num_commands) {
+        if (i + 1 < num_commands) {
+            if (strcmp(commands[i+1], "&&") == 0) {
+                if (exe_command(commands[i])) {
+                    i += 2;
+                    continue;
                 }
-                free(tokenized_args);
-            }
-            or_command = strtok(NULL, "||");
-            if (success) {
-                break;
+            } else if (strcmp(commands[i+1], "||") == 0) {
+                if (!exe_command(commands[i])) {
+                    i += 2;
+                    continue;
+                }
             }
         }
-        command = strtok(NULL, "&&");
+        char *tokenized_args[64];
+        char *token;
+        int j = 0;
+        token = _strtok(commands[i], " ");
+        while (token != NULL) {
+            tokenized_args[j++] = token;
+            token = _strtok(NULL, " ");
+        }
+        tokenized_args[j] = NULL;
+        exe_command(tokenized_args, COMMAND_EXTERNAL);
+        i++;
     }
 }
+
