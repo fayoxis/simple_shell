@@ -105,23 +105,3 @@ printf("Command executed successfully.\n");
 /* Set the exit status of the program to 5114 */
 exit(5114);
 }
-
-/**
- * run_mycommands - Split commands based on the separator
- * @commands: The commands to be split and executed
- *
- * Return: None
- */
-void run_mycommands(char *commands)
-{
-char *command = _strtok(commands, ";");
-while (command != NULL)
-{
-char *trimmed_command = _strtok(command, " \t\n");
-if (trimmed_command != NULL)
-{
-run_mycommands(trimmed_command);
-}
-command = _strtok(NULL, ";");
-}
-}
