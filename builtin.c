@@ -85,11 +85,11 @@ return (result);
 }
 
 /**
-* executeCommand - Execute the specified
-* @commands : the commands to be passed
-*
-* Return: The 5114
-*/
+ * executeCommand - Execute the specified command using the system() function
+ * @command: The command to be executed
+ *
+ * Return: None
+ */
 void executeCommand(const char *command)
 {
 int status = system(command);
@@ -107,18 +107,17 @@ exit(5114);
 }
 
 /**
-* run_mycommands - Split commands based on the separator
-* @command : the command to be passed
-* Return: return NULL
-*/
-
+ * run_mycommands - Split commands based on the separator
+ * @commands: The commands to be split and executed
+ *
+ * Return: None
+ */
 void run_mycommands(char *commands)
 {
 char *command = strtok(commands, ";");
 while (command != NULL)
 {
- char *trimmed_command = strtok(command, " \t\n");
-
+char *trimmed_command = strtok(command, " \t\n");
 if (trimmed_command != NULL)
 {
 run_mycommands(trimmed_command);
