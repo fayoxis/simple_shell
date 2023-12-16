@@ -16,45 +16,38 @@ void free_s(char **str_arr)
 }
 
 
-int customGetline(char **ptr, size_t *length) {
-    static char buffer[READ_BUF_SIZE];
-    static size_t index = 0, bufferLength = 0;
-    size_t k;
-    ssize_t readResult = 0, seekResult = 0;
-    char *p = NULL, *new_p = NULL;
-    const char *c;
+char* getline() {
+    static char buffer[BUFFER_SIZE];
+    static int buffer_index = 0;
+    static int buffer_size = 0;
 
-    p = *ptr;
-    if (p && length)
-        seekResult = *length;
-    if (index == bufferLength)
-        index = bufferLength = 0;
+    char* line = NULL;
+    int line_size = 0;
+    char current_char;
 
-    readResult = read(0, buffer, READ_BUF_SIZE);
-    if (readResult == -1 || (readResult == 0 && bufferLength == 0))
-        return -1;
+    while (1) {
+    
+        if (buffer_index >= buffer_size) {
+            buffer_size = read(buffer, sizeof(char), BUFFER_SIZE, stdin);
+            buffer_index = 0;
 
-    c = _strchr(buffer + index, '\n');
-    k = c ? 1 + (unsigned int)(c - buffer) : bufferLength;
-    new_p = _realloc(p, seekResult ? seekResult + k : k + 1);
-    if (!new_p) /* MALLOC FAILURE! */
-        return p ? (free(p), -1) : -1;
+            if (buffer_size == 0)
+                break;
+        }
 
-    if (seekResult)
-        new_p = _strncat(new_p, buffer + index, k - index);
-    else
-        new_p = _strncpy(new_p, buffer + index, k - index + 1);
+        current_char = buffer[buffer_index++];
 
-    seekResult += k - index;
-    index = k;
-    p = new_p;
+        if (current_char == '\n')
+            break;
 
-    if (length)
-        *length = seekResult;
-    *ptr = p;
-    return seekResult;
+        line = _realloc(line, (line_size + 1) * sizeof(char));
+        line[line_size++] = current_char;
+    }
+    line = _realloc(line, (line_size + 1) * sizeof(char));
+    line[line_size] = '\0';
+
+    return line;
 }
-
 /**
  **_strncat - concatenates two strings
  *@dest: the first string
