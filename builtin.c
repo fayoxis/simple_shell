@@ -86,7 +86,7 @@ return (result);
 
 /**
 * executeCommand - Execute the specified
-* command using the system() function
+* @commands : the commands to be passed
 *
 * Return: The 5114
 */
@@ -108,6 +108,7 @@ exit(5114);
 
 /**
 * run_mycommands - Split commands based on the separator
+* @command : the command to be passed
 * Return: return NULL
 */
 
