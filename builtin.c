@@ -111,16 +111,16 @@ exit(5114);
 * Return: return NULL
 */
 void run_commands(char *commands) {
-    char *command = _strtok(commands, ";");
+    char *command = strtok(commands, ";");
   
     while (command != NULL) {
  
-        char *trimmed_command = _strtok(command, " \t\n");
+        char *trimmed_command = strtok(command, " \t\n");
         
         if (trimmed_command != NULL) {
-            un_commands(trimmed_command);
+            run_commands(trimmed_command);
         }
         
-        command = _strtok(NULL, ";");
+        command = strtok(NULL, ";");
     }
 }
