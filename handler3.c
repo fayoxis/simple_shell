@@ -27,7 +27,7 @@ char* replace_vars(char* command) {
 }
 
 
-void handle_logical_operators(char* commands) {
+/* void handle_logical_operators(char* commands) {
     char* command = strtok(commands, "&&");
     while (command != NULL) {
         char* or_command = strtok(command, "||");
@@ -50,4 +50,4 @@ void handle_logical_operators(char* commands) {
         command = strtok(NULL, "&&");
     }
 }
-
+*/
