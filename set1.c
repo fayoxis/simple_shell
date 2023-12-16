@@ -34,16 +34,16 @@ int customGetline(char **ptr, size_t *length) {
     if (readResult == -1 || (readResult == 0 && bufferLength == 0))
         return -1;
 
-    c = strchr(buffer + index, '\n'); // Use strchr instead of _strchr
+    c = _strchr(buffer + index, '\n');
     k = c ? 1 + (unsigned int)(c - buffer) : bufferLength;
-    new_p = realloc(p, seekResult ? seekResult + k : k + 1);
+    new_p = _realloc(p, seekResult ? seekResult + k : k + 1);
     if (!new_p) /* MALLOC FAILURE! */
         return p ? (free(p), -1) : -1;
 
     if (seekResult)
-        strncat(new_p, buffer + index, k - index);
+        _strncat(new_p, buffer + index, k - index);
     else
-        strncpy(new_p, buffer + index, k - index + 1);
+        _strncpy(new_p, buffer + index, k - index + 1);
 
     seekResult += k - index;
     index = k;
