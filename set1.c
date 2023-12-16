@@ -76,3 +76,33 @@ char *_strncat(char *dest, char *src, int n)
 		dest[i] = '\0';
 	return (s);
 }
+ssize_t fread(int fd, void* buffer, size_t count) {
+    static char internal_buffer[BUFFER_SIZE];
+    static int buffer_index = 0;
+    static int buffer_size = 0;
+
+    char* dest = buffer;
+    size_t remaining = count;
+    ssize_t total_read = 0;
+
+    while (remaining > 0) {
+        if (buffer_index >= buffer_size) {
+            buffer_size = read(fd, internal_buffer, BUFFER_SIZE);
+
+            if (buffer_size <= 0)
+                break;
+
+            buffer_index = 0;
+        }
+
+        size_t copy_size = (remaining < (buffer_size - buffer_index)) ? remaining : (buffer_size - buffer_index);
+        memcpy(dest, internal_buffer + buffer_index, copy_size);
+
+        buffer_index += copy_size;
+        dest += copy_size;
+        remaining -= copy_size;
+        total_read += copy_size;
+    }
+
+    return total_read;
+}
