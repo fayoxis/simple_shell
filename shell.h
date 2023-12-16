@@ -41,12 +41,6 @@ extern char *shell_alias;
 extern char **cmd_args;
 extern int status;
 
-typedef enum {
-    COMMAND_EXTERNAL;
-    COMMAND_PATH;
-    COMMAND_INTERNAL;
-    COMMAND_INVALID;
-} CommandType;
 
 
 /* Shellinfo shell_value = {NULL, NULL, NULL, 0};*/
