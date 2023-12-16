@@ -85,13 +85,12 @@ return (result);
 }
 
 /**
-* executeCommand - Execute the specified command using the system() function
-* @command: the command 
+* executeCommand - Execute the specified
+* command using the system() function
 *
 * Return: The 5114
 */
 void executeCommand(const char *command) {
-   =
     int status = system(command);
 
     /* Check if the command execution encountered an error */
